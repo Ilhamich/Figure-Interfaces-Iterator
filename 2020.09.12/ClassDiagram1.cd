@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_2020._09._12.Program" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACkAAAAABAAAAAAAAAAAAAACIAAAAAJAQAAAFAAAAEA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2020._09._12.Circle" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAIIAAAAAAAAAgACAAAAABBCAACAAAAAAABAQAAAAA=</HashCode>
+      <FileName>BaseSecondStep\Circle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2020._09._12.Polyline" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAQAAAAAABAACAABAKAAAAgAABAABAAAAACA=</HashCode>
+      <FileName>BaseSecondStep\Polyline.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2020._09._12.Point" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAAAAAAAACAAgAAAAAABAAAAAAAAAAAABMAAAAAA=</HashCode>
+      <FileName>BaseFirstStep\Point.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2020._09._12.Square" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAIAAAAAAAAAAAAAAAAABACDIAAAAhAAIBMQAAAAA=</HashCode>
+      <FileName>BaseSecondStep\Square.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2020._09._12.Triangle" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAIAAAAAABACAAQAACAABBCAAAAAAAgCABgQAAAAA=</HashCode>
+      <FileName>BaseSecondStep\Triangle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2020._09._12.CirclInSquare" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAAAAAAAAAAAAAAAAAAAABACAAAAAAAAAABMAAACAA=</HashCode>
+      <FileName>BaseThirdStep\CirclInSquare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2020._09._12.Romb" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAABAQQAAAA=</HashCode>
+      <FileName>BaseThirdStep\Romb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2020._09._12.RombInCircl" Collapsed="true">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAABAKAAIAAAAAAABMAAAAAA=</HashCode>
+      <FileName>BaseFourthStep\RombInCircl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2020._09._12.Picture">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="_2020._09._12.Picture.PictureIterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Picture.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAABAACAACAABAAAAAAAACAAABAAAAAAA=</HashCode>
+      <FileName>Picture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2020._09._12.Figure" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAAAAAAAAAAAAAAACAABACAAAAAAAAAABMAAAAAA=</HashCode>
+      <FileName>Base\Figure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="_2020._09._12.IFigure" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAABMAAAAAA=</HashCode>
+      <FileName>Interfaces\IFigure.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="_2020._09._12.IFigureTurner" Collapsed="true">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFigureTurner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="_2020._09._12.IGeometrical" Collapsed="true">
+    <Position X="12.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Interfaces\IGeometrical.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="_2020._09._12.IFigureSizer" Collapsed="true">
+    <Position X="12.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFigureSizer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
