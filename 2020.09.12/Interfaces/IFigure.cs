@@ -8,7 +8,7 @@
 
         Coordinates[] GetView();
 
-        object GetCopy();
+        IFigure GetCopy();
 
         int CentrX
         {

@@ -49,6 +49,7 @@
     <Compile Include="BaseSecondStep\Polyline.cs" />
     <Compile Include="BaseThirdStep\CirclInSquare.cs" />
     <Compile Include="BL.cs" />
+    <Compile Include="UI\Controller.cs" />
     <Compile Include="EnumsAndStructs\Coordinates.cs" />
     <Compile Include="EnumsAndStructs\FigureImput.cs" />
     <Compile Include="EnumsAndStructs\InputUser.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="BaseSecondStep\Triangle.cs" />
     <Compile Include="BaseThirdStep\Romb.cs" />
     <Compile Include="BaseFourthStep\RombInCircl.cs" />
-    <Compile Include="UI.cs" />
+    <Compile Include="UI\Visualizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

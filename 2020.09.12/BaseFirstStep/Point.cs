@@ -36,7 +36,7 @@
             return starts;
         }
 
-        public virtual object GetCopy()
+        public virtual IFigure GetCopy()
         {
             Point copy = (Point)MemberwiseClone();
 

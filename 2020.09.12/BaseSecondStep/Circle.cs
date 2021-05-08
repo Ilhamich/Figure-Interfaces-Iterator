@@ -30,7 +30,7 @@ namespace _2020._09._12
             return _circl;
         }
 
-        public override object GetCopy()       
+        public override IFigure GetCopy()       
         {
             Circle copy = (Circle)MemberwiseClone();
             copy._circl = (Coordinates[])_circl.Clone();

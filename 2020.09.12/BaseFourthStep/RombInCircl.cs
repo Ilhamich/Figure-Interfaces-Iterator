@@ -82,7 +82,7 @@
             return rombInCircle;
         }
 
-        public override object GetCopy()
+        public override IFigure GetCopy()
         {
             RombInCircl copy = (RombInCircl)MemberwiseClone();
             copy._triangl = (Coordinates[])_triangl.Clone();

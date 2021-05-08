@@ -97,7 +97,7 @@ namespace _2020._09._12
             return _square;
         }
 
-        public override object GetCopy()
+        public override IFigure GetCopy()
         {
             Square copy = (Square)MemberwiseClone();
             copy._square = (Coordinates[])_square.Clone();

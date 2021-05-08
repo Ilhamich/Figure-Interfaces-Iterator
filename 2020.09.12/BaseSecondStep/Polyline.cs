@@ -42,7 +42,7 @@
             return _polyline;
         }
 
-        public override object GetCopy()
+        public override IFigure GetCopy()
         {
             Polyline copy = (Polyline)MemberwiseClone();
             ((Polyline)copy)._polyline = (Coordinates[])_polyline.Clone();

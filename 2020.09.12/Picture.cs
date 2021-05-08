@@ -44,11 +44,11 @@ namespace _2020._09._12
         {
             get
             {
-                return (IFigure)_figures[index].GetCopy();
+                return _figures[index].GetCopy();
             }
             set
             {
-                _figures[index] = (IFigure)value.GetCopy();
+                _figures[index] = value.GetCopy();
             }
         }
 
@@ -71,7 +71,7 @@ namespace _2020._09._12
         {
             Array.Resize(ref _figures, _figures.Length + 1);
 
-            _figures[_figures.Length] = (IFigure)figureNew.GetCopy();
+            _figures[_figures.Length] = figureNew.GetCopy();
         }
 
         public void DeleteFigure(int index)
@@ -84,7 +84,7 @@ namespace _2020._09._12
                 {
                     if (i != index)
                     {
-                        tmp[i] = (IFigure)_figures[i].GetCopy();
+                        tmp[i] = _figures[i].GetCopy();
                     }                  
                 }
 

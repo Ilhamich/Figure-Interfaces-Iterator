@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Collections;
 using System.Threading;
 
 namespace _2020._09._12
@@ -15,53 +14,53 @@ namespace _2020._09._12
 
             do
             {
-                int chois = UI.ChoisOfFigure();
+                int chois = Visualizer.ChoisOfFigure();
                 int size = 0;
 
                 switch (chois)
                 {
                     case 1:
-                        PointMenu(UI.START_X_POSITION, UI.START_Y_POSITION);
+                        PointMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION);
                         break;
 
                     case 2:
-                        size = UI.GiveFigureSize("Выберите размер ломаной линии : ");
-                        PolylineMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер ломаной линии : ");
+                        PolylineMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 3:
-                        size = UI.GiveFigureSize("Выберите размер круга : ");
-                        CirclMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер круга : ");
+                        CirclMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 4:
-                        size = UI.GiveFigureSize("Выберите размер квадрата : ");
-                        SquareMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер квадрата : ");
+                        SquareMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 5:
-                        size = UI.GiveFigureSize("Выберите размер треугольника : ");
-                        TriangleMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер треугольника : ");
+                        TriangleMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 6:
-                        size = UI.GiveFigureSize("Выберите размер ромба : ");
-                        RombMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер ромба : ");
+                        RombMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 7:
-                        size = UI.GiveFigureSize("Выберите размер круга в квадрате : ");
-                        CircInSquareMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер круга в квадрате : ");
+                        CircInSquareMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 8:
-                        size = UI.GiveFigureSize("Выберите размер ромба в круге : ");
-                        RombInCircleMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.GiveFigureSize("Выберите размер ромба в круге : ");
+                        RombInCircleMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 9:
-                        size = UI.STANDART_SIZE_FIGURE;
-                        PictureMenu(UI.START_X_POSITION, UI.START_Y_POSITION, size);
+                        size = Visualizer.STANDART_SIZE_FIGURE;
+                        PictureMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     default:
@@ -70,7 +69,7 @@ namespace _2020._09._12
                 }
             } while (exit);
         }
-    
+
         static void PointMenu(int startX, int startY)
         {
             InputUser chois = 0;
@@ -81,16 +80,17 @@ namespace _2020._09._12
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_POINT;
-              
-                chois = UI.ChooseActionForFigure(menu);
-                UI.ClearPoints(myPoint.CentrX, myPoint.CentrY);
+                string[] menu = Visualizer.MENU_POINT;
+
+                SetAction(menu, ref chois);
+
+                Visualizer.ClearPoints(myPoint.CentrX, myPoint.CentrY);
 
                 BL.ChangeFigure(chois, ref result, myPoint);
 
                 if (result)
                 {
-                    UI.PrintPoint(myPoint.CentrX, myPoint.CentrY, ColorFigure.Red);
+                    Visualizer.PrintPoint(myPoint.CentrX, myPoint.CentrY, ColorFigure.Red);
                 }
             } while (result);
         }
@@ -99,15 +99,15 @@ namespace _2020._09._12
         {
             InputUser chois = 0;
             bool result = true;
-            Polyline myPolyline = new Polyline(startX + UI.DISTANCE_FOR_X, startY, size);
+            Polyline myPolyline = new Polyline(startX + Visualizer.DISTANCE_FOR_X, startY, size);
 
             do
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_FIGURE;
-              
-                chois = UI.ChooseActionForFigure(menu);
+                string[] menu = Visualizer.MENU_FIGURE;
+
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -115,7 +115,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myPolyline.Length; i++)
                     {
-                        UI.ClearPoints(polyline[i].X, polyline[i].Y);
+                        Visualizer.ClearPoints(polyline[i].X, polyline[i].Y);
                     }
                 }
 
@@ -127,7 +127,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myPolyline.Length; i++)
                     {
-                        UI.PrintPoint(polyline[i].X, polyline[i].Y, ColorFigure.Magenta);
+                        Visualizer.PrintPoint(polyline[i].X, polyline[i].Y, ColorFigure.Magenta);
                     }
                 }
             } while (result);
@@ -143,9 +143,9 @@ namespace _2020._09._12
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_SIMPLE_FIGURE;
+                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
 
-                chois = UI.ChooseActionForFigure(menu);
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -153,7 +153,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < mySquare.Length; i++)
                     {
-                        UI.ClearPoints(square[i].X, square[i].Y);
+                        Visualizer.ClearPoints(square[i].X, square[i].Y);
                     }
                 }
 
@@ -165,7 +165,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < forSquare.Length; i++)
                     {
-                        UI.PrintPoint(forSquare[i].X, forSquare[i].Y, ColorFigure.Blue);
+                        Visualizer.PrintPoint(forSquare[i].X, forSquare[i].Y, ColorFigure.Blue);
                     }
                 }
             } while (result);
@@ -181,9 +181,9 @@ namespace _2020._09._12
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_SIMPLE_FIGURE;
+                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
 
-                chois = UI.ChooseActionForFigure(menu);
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -191,7 +191,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myCircle.Length; i++)
                     {
-                        UI.ClearPoints(circle[i].X, circle[i].Y);
+                        Visualizer.ClearPoints(circle[i].X, circle[i].Y);
                     }
                 }
 
@@ -203,7 +203,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myCircle.Length; i++)
                     {
-                        UI.PrintPoint(circle[i].X, circle[i].Y, ColorFigure.Green);
+                        Visualizer.PrintPoint(circle[i].X, circle[i].Y, ColorFigure.Green);
                     }
                 }
             } while (result);
@@ -219,9 +219,9 @@ namespace _2020._09._12
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_FIGURE;
+                string[] menu = Visualizer.MENU_FIGURE;
 
-                chois = UI.ChooseActionForFigure(menu);
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -229,7 +229,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myTriangle.Length; i++)
                     {
-                        UI.ClearPoints(triangle[i].X, triangle[i].Y);
+                        Visualizer.ClearPoints(triangle[i].X, triangle[i].Y);
                     }
                 }
 
@@ -241,7 +241,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myTriangle.Length; i++)
                     {
-                        UI.PrintPoint(triangl[i].X, triangl[i].Y, ColorFigure.DarkYellow);
+                        Visualizer.PrintPoint(triangl[i].X, triangl[i].Y, ColorFigure.DarkYellow);
                     }
                 }
             } while (result);
@@ -252,14 +252,14 @@ namespace _2020._09._12
             InputUser chois = 0;
             bool result = true;
             Romb myRomb = new Romb(startX, startY, size);
-            
+
             do
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_SIMPLE_FIGURE;
+                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
 
-                chois = UI.ChooseActionForFigure(menu);
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -267,7 +267,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < myRomb.Length; i++)
                     {
-                        UI.ClearPoints(romb[i].X, romb[i].Y);
+                        Visualizer.ClearPoints(romb[i].X, romb[i].Y);
                     }
                 }
 
@@ -279,7 +279,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < romb.Length; i++)
                     {
-                        UI.PrintPoint(romb[i].X, romb[i].Y, ColorFigure.Cyan);
+                        Visualizer.PrintPoint(romb[i].X, romb[i].Y, ColorFigure.Cyan);
                     }
                 }
             } while (result);
@@ -295,9 +295,9 @@ namespace _2020._09._12
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_SIMPLE_FIGURE;
-          
-                chois = UI.ChooseActionForFigure(menu);
+                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
+
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -305,7 +305,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < figureCIS.Length; i++)
                     {
-                        UI.ClearPoints(circleinSquare[i].X, circleinSquare[i].Y);
+                        Visualizer.ClearPoints(circleinSquare[i].X, circleinSquare[i].Y);
                     }
                 }
 
@@ -319,11 +319,11 @@ namespace _2020._09._12
                     {
                         if (i < figureCIS.LengthSquare)
                         {
-                            UI.PrintPoint(circleinSquare[i].X, circleinSquare[i].Y, ColorFigure.Blue);
+                            Visualizer.PrintPoint(circleinSquare[i].X, circleinSquare[i].Y, ColorFigure.Blue);
                         }
                         else
                         {
-                            UI.PrintPoint(circleinSquare[i].X, circleinSquare[i].Y, ColorFigure.Green);
+                            Visualizer.PrintPoint(circleinSquare[i].X, circleinSquare[i].Y, ColorFigure.Green);
                         }
                     }
                 }
@@ -340,9 +340,9 @@ namespace _2020._09._12
             {
                 Thread.Sleep(40);
 
-                string[] menu = UI.MENU_SIMPLE_FIGURE;
-            
-                chois = UI.ChooseActionForFigure(menu);
+                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
+
+                SetAction(menu, ref chois);
 
                 if (chois != InputUser.Escape)
                 {
@@ -350,7 +350,7 @@ namespace _2020._09._12
 
                     for (int i = 0; i < figureRC.Length; i++)
                     {
-                        UI.ClearPoints(rombInCircl[i].X, rombInCircl[i].Y);
+                        Visualizer.ClearPoints(rombInCircl[i].X, rombInCircl[i].Y);
                     }
                 }
 
@@ -364,11 +364,11 @@ namespace _2020._09._12
                     {
                         if (i < figureRC.LengthCircle)
                         {
-                            UI.PrintPoint(rombInCircle[i].X, rombInCircle[i].Y, ColorFigure.Green);
+                            Visualizer.PrintPoint(rombInCircle[i].X, rombInCircle[i].Y, ColorFigure.Green);
                         }
                         else
                         {
-                            UI.PrintPoint(rombInCircle[i].X, rombInCircle[i].Y, ColorFigure.Cyan);
+                            Visualizer.PrintPoint(rombInCircle[i].X, rombInCircle[i].Y, ColorFigure.Cyan);
                         }
                     }
                 }
@@ -378,16 +378,16 @@ namespace _2020._09._12
         static void PictureMenu(int startX, int startY, int size)
         {
             IFigure circl = new Circle(startX, startY, size);
-            IFigure square = new Square(circl.CentrX + UI.DISTANCE_FOR_X,
+            IFigure square = new Square(circl.CentrX + Visualizer.DISTANCE_FOR_X,
                     circl.CentrY, size);
-            IFigure triangle = new Triangle(square.CentrX + UI.DISTANCE_FOR_X,
+            IFigure triangle = new Triangle(square.CentrX + Visualizer.DISTANCE_FOR_X,
                     square.CentrY, size);
-            IFigure romb = new Romb(triangle.CentrX + UI.DISTANCE_FOR_X,
+            IFigure romb = new Romb(triangle.CentrX + Visualizer.DISTANCE_FOR_X,
                    triangle.CentrY, size);
             IFigure cirqlInSquare = new CirclInSquare(square.CentrX,
-                    square.CentrY + UI.DISTANCE_FOR_Y, size);
+                    square.CentrY + Visualizer.DISTANCE_FOR_Y, size);
             IFigure rombInCircle = new RombInCircl(triangle.CentrX,
-                    triangle.CentrY + UI.DISTANCE_FOR_Y, size);
+                    triangle.CentrY + Visualizer.DISTANCE_FOR_Y, size);
 
             Picture allFigure = new Picture(circl, square, triangle, romb,
                     cirqlInSquare, rombInCircle);
@@ -414,7 +414,7 @@ namespace _2020._09._12
 
                 for (int i = 0; i < allFigr.Length; i++)
                 {
-                    UI.PrintPoint(allFigr[i].X, allFigr[i].Y, ColorFigure.Green);
+                    Visualizer.PrintPoint(allFigr[i].X, allFigr[i].Y, ColorFigure.Green);
                 }
 
                 figure = ChooseFigureOnPicture(ref chois, allFigure);
@@ -435,12 +435,17 @@ namespace _2020._09._12
 
         static int ChooseFigureOnPicture(ref FigureImput chois, Picture allFigure)
         {
-            FigureImput figure;
+            FigureImput figure = FigureImput.NoFigure;
             int chFigure = 0;
 
             do
             {
-                figure = UI.ChoisFigureOnPicture();
+                do
+                {
+                    figure = Controller.SetFigure();
+                    Visualizer.ChoisFigureOnPicture(ref figure);
+                } while (figure < FigureImput.Circle);
+      
                 Thread.Sleep(40);
 
                 if (figure != FigureImput.Enter && figure != FigureImput.Escape)
@@ -464,7 +469,7 @@ namespace _2020._09._12
 
                         for (int j = 0; j < tmpFigure.Length; j++)
                         {
-                            UI.PrintPoint(tmpFigure[j].X, tmpFigure[j].Y, color);
+                            Visualizer.PrintPoint(tmpFigure[j].X, tmpFigure[j].Y, color);
                         }
                     }
                 }
@@ -485,9 +490,9 @@ namespace _2020._09._12
 
             do
             {
-                string[] menu = UI.MENU_FIGURE;
+                string[] menu = Visualizer.MENU_FIGURE;
 
-                chois = UI.ChooseActionForFigure(menu);
+                SetAction(menu, ref chois);
 
                 Thread.Sleep(40);
 
@@ -497,7 +502,7 @@ namespace _2020._09._12
 
                     for (int j = 0; j < tmpFigure.Length; j++)
                     {
-                        UI.ClearPoints(tmpFigure[j].X, tmpFigure[j].Y);
+                        Visualizer.ClearPoints(tmpFigure[j].X, tmpFigure[j].Y);
                     }
                 }
 
@@ -519,13 +524,22 @@ namespace _2020._09._12
 
                         for (int j = 0; j < tmpFigure.Length; j++)
                         {
-                            UI.PrintPoint(tmpFigure[j].X, tmpFigure[j].Y, color);
+                            Visualizer.PrintPoint(tmpFigure[j].X, tmpFigure[j].Y, color);
                         }
                     }
                 }
             } while (result);
 
-            UI.ClearMasseges(UI.MENU_FIGURE);
+            Visualizer.ClearMasseges(Visualizer.MENU_FIGURE);
+        }
+
+        static void SetAction(string[] menu, ref InputUser chois)
+        {
+            do
+            {
+                Visualizer.ChooseActionForFigure(menu, chois);
+                chois = Controller.SetKurse();
+            } while (chois < InputUser.LeftArrow || chois > (InputUser)menu.Length);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace _2020._09._12
             return (Coordinates[])_triangl.Clone();
         }
 
-        public override object GetCopy()
+        public override IFigure GetCopy()
         {
             Triangle copy = (Triangle)MemberwiseClone();
             copy._triangl = (Coordinates[])_triangl.Clone();

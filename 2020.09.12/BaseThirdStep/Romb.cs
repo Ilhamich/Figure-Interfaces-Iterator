@@ -20,7 +20,7 @@ namespace _2020._09._12
             return _triangl;
         }
 
-        public override object GetCopy()
+        public override IFigure GetCopy()
         {
             Romb copy = (Romb)MemberwiseClone();
             copy._triangl = (Coordinates[])_triangl.Clone();

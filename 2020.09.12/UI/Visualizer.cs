@@ -2,7 +2,7 @@
 
 namespace _2020._09._12
 {
-    class UI
+    class Visualizer
     {
         public const int QUNTITY_OF_FIGURE = 9;
         public const int START_X_POSITION = 30;
@@ -105,27 +105,36 @@ namespace _2020._09._12
 
             bool result = true;
             int chois;
+            string offer = "Выберите фигуру : ";
+            string[] menu =
+            {
+                    offer, "Точка : 1", "Ломаная линия : 2", "Круг : 3",
+                    "Квадрат : 4", "Трехугольник : 5", "Ромб : 6",
+                    "Круг в Квадрете : 7", "Ромб в круге : 8",
+                    "Все фигуры : 9", "Выход : 0", "Подтвердить выбор : Enter"
+            };
 
             do
             {
                 int xForPrint = 0;
                 int yForPrint = 0;
-                string offer = "Выберите фигуру : ";
-
-                string[] menu =
-                {
-                    offer, "Точка : 1", "Ломаная линия : 2", "Круг : 3",
-                    "Квадрат : 4", "Трехугольник : 5", "Ромб : 6",
-                    "Круг в Квадрете : 7", "Ромб в круге : 8",
-                    "Все фигуры : 9", "Выход : 0", "Подтвердить выбор : Enter"
-                };
 
                 for (int i = 0; i < menu.Length; i++)
                 {
-
-                    if (i == menu.Length - 1)
+                    if (i == 0)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        if (i != menu.Length - 1)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
                     }
 
                     Console.SetCursorPosition(xForPrint, yForPrint++);
@@ -152,7 +161,7 @@ namespace _2020._09._12
             return chois;
         }
 
-        public static FigureImput ChoisFigureOnPicture()
+        public static void ChoisFigureOnPicture(ref FigureImput chois)
         {
             int xForPrint = 0;
             int yForPrint = 0;
@@ -171,18 +180,13 @@ namespace _2020._09._12
             }
 
             yForPrint = 0;
-            FigureImput chois;
 
-            do
+            Console.SetCursorPosition(xForPrint + offer.Length, yForPrint);
+
+            if (chois < FigureImput.Circle)
             {
-                Console.SetCursorPosition(xForPrint + offer.Length, yForPrint);
-                chois = SetFigure();
-
-                if (chois < FigureImput.Circle)
-                {
-                    ClearLine(xForPrint + offer.Length, yForPrint, " ");
-                }
-            } while (chois < FigureImput.Circle);
+                ClearLine(xForPrint + offer.Length, yForPrint, " ");
+            }
 
             if (chois == FigureImput.Enter || chois == FigureImput.Escape)
             {
@@ -194,8 +198,6 @@ namespace _2020._09._12
                     ClearLine(xForPrint, yForPrint++, menu[i]);
                 }
             }
-
-            return chois;
         }
 
         public static int GiveFigureSize(string line)
@@ -226,7 +228,7 @@ namespace _2020._09._12
             return size;
         }
 
-        public static InputUser ChooseActionForFigure(string[] menu)
+        public static void ChooseActionForFigure(string[] menu, InputUser key)
         {
             int xForPrint = 0;
             int yForPrint = 0;
@@ -242,169 +244,13 @@ namespace _2020._09._12
             }
 
             yForPrint = 0;
-            InputUser key = 0;
 
-            do
+            Console.SetCursorPosition(xForPrint + offer.Length, yForPrint);
+
+            if (key < InputUser.LeftArrow || key > (InputUser)menu.Length)
             {
-                Console.SetCursorPosition(xForPrint + offer.Length, yForPrint);
-
-                key = SetKurse();
-
-                if (key < InputUser.LeftArrow || key > (InputUser)menu.Length)
-                {
-                    ClearLine(xForPrint + offer.Length, yForPrint, " ");
-                }
-            } while (key < InputUser.LeftArrow || key > (InputUser)menu.Length);
-
-            return key;
-        }
-
-        public static InputUser SetKurse()
-        {
-            ConsoleKey keyReal = 0;
-            InputUser key = 0;
-
-            keyReal = Console.ReadKey().Key;
-
-            switch (keyReal)
-            {
-                case ConsoleKey.LeftArrow:
-
-                    key = InputUser.LeftArrow;
-                    break;
-
-                case ConsoleKey.UpArrow:
-
-                    key = InputUser.UpArrow;
-                    break;
-
-                case ConsoleKey.RightArrow:
-
-                    key = InputUser.RightArrow;
-                    break;
-
-                case ConsoleKey.DownArrow:
-
-                    key = InputUser.DownArrow;
-                    break;
-
-                case ConsoleKey.Add:
-
-                    key = InputUser.Plus;
-                    break;
-
-                case ConsoleKey.Subtract:
-
-                    key = InputUser.Minus;
-                    break;
-
-                case ConsoleKey.Enter:
-
-                    key = InputUser.Enter;
-                    break;
-
-                case ConsoleKey.Escape:
-
-                    key = InputUser.Escape;
-                    break;
-
-                case ConsoleKey.Divide:
-
-                    key = InputUser.Turn;
-                    break;
-
-                default:
-                    key = InputUser.NoDirection;
-                    break;
+                ClearLine(xForPrint + offer.Length, yForPrint, " ");
             }
-
-            return key;
-        }
-
-        public static FigureImput SetFigure()
-        {
-            ConsoleKey keyReal = 0;
-            FigureImput key = 0;
-
-            keyReal = Console.ReadKey().Key;
-
-            switch (keyReal)
-            {
-                case ConsoleKey.D1:
-
-                    key = FigureImput.Circle;
-                    break;
-
-                case ConsoleKey.NumPad1:
-
-                    key = FigureImput.Circle;
-                    break;
-
-                case ConsoleKey.D2:
-
-                    key = FigureImput.Square;
-                    break;
-
-                case ConsoleKey.NumPad2:
-
-                    key = FigureImput.Square;
-                    break;
-
-                case ConsoleKey.D3:
-
-                    key = FigureImput.Triangle;
-                    break;
-
-                case ConsoleKey.NumPad3:
-
-                    key = FigureImput.Triangle;
-                    break;
-
-                case ConsoleKey.D4:
-
-                    key = FigureImput.Romb;
-                    break;
-
-                case ConsoleKey.NumPad4:
-
-                    key = FigureImput.Romb;
-                    break;
-
-                case ConsoleKey.D5:
-
-                    key = FigureImput.CircleInSquare;
-                    break;
-
-                case ConsoleKey.NumPad5:
-
-                    key = FigureImput.CircleInSquare;
-                    break;
-
-                case ConsoleKey.D6:
-
-                    key = FigureImput.RombinCircle;
-                    break;
-
-                case ConsoleKey.NumPad6:
-
-                    key = FigureImput.RombinCircle;
-                    break;
-
-                case ConsoleKey.Enter:
-
-                    key = FigureImput.Enter;
-                    break;
-
-                case ConsoleKey.Escape:
-                    key = FigureImput.Escape;
-                    break;
-
-                default:
-                    key = FigureImput.NoFigure;
-                    break;
-            }
-
-            return key;
         }
     }
 }

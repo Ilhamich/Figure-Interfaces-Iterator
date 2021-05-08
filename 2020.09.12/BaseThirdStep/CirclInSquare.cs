@@ -78,7 +78,7 @@
             return circleInSquare;
         }
 
-        public override object GetCopy()
+        public override IFigure GetCopy()
         {
             CirclInSquare copy = (CirclInSquare)MemberwiseClone();
             copy._circl = (Coordinates[])_circl.Clone();
