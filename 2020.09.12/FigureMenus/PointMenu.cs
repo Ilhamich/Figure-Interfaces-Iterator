@@ -2,8 +2,8 @@
 {
     internal class PointMenu : FigureMenu
     {
-        public PointMenu(Coordinates start, string[] listMenu)
-            : base(listMenu)
+        public PointMenu(Coordinates start, string[] listMenu, ColorFigure color)
+            : base(listMenu, color)
         {
             _figure = new Point(start);
         }
@@ -19,7 +19,7 @@
                 BL.ChangeFigure(_chois, _figure, ref _result);
 
                 if (_result)
-                    Visualizer.PrintPoint(_figure.CentrX, _figure.CentrY, ColorFigure.Red);
+                    Visualizer.PrintPoint(_figure.CentrX, _figure.CentrY, _color);
 
             } while (_result);
         }

@@ -2,8 +2,8 @@
 {
     public class SingleFigureMenu : FigureMenu
     {
-        public SingleFigureMenu(string[] listMenu, IFigure figure)
-            : base(listMenu)
+        public SingleFigureMenu(string[] listMenu, IFigure figure, ColorFigure color)
+            : base(listMenu, color)
         {
             _figure = figure;
         }
@@ -32,7 +32,7 @@
 
                     for (int i = 0; i < _figure.Length; i++)
                     {
-                        Visualizer.PrintPoint(figurePoints[i].X, figurePoints[i].Y, ColorFigure.Magenta);
+                        Visualizer.PrintPoint(figurePoints[i].X, figurePoints[i].Y, _color);
                     }
                 }
             } while (_result);

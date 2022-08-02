@@ -1,6 +1,6 @@
 ﻿namespace _2020._09._12
 {
-    enum ColorFigure : short
+    public enum ColorFigure : short
     {
         Black = 0,
         DarkBlue = 1,

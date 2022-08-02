@@ -14,50 +14,69 @@ namespace _2020._09._12
                 int chois = Visualizer.ChoisOfFigure();
                 int size = 0;
                 FigureMenu figureMenu;
-                Coordinates start;
+                Coordinates start = new Coordinates(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION); ;
                 IFigure figure;
 
                 switch (chois)
                 {
                     case 1:
-                        start = new Coordinates(Visualizer.START_X_POSITION
-                            , Visualizer.START_Y_POSITION);
-
-                        figureMenu = new PointMenu(start, Visualizer.MENU_POINT);
-
+                        figureMenu = new PointMenu(start, Visualizer.MENU_POINT, ColorFigure.Red);
                         figureMenu.RunMenu();
                         break;
 
                     case 2:
                         size = Visualizer.GiveFigureSize("Выберите размер ломаной линии : ");
-                        start = new Coordinates(Visualizer.START_X_POSITION
-                            , Visualizer.START_Y_POSITION);
-
                         figure = new Polyline(start.X + Visualizer.DISTANCE_FOR_X, start.Y, size);
-                        SingleFigureMenu singlePolyMenu = new SingleFigureMenu(Visualizer.MENU_FIGURE, figure);
 
-                        singlePolyMenu.RunMenu();
-                        // PolylineMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        figureMenu = new SingleFigureMenu(Visualizer.MENU_FIGURE
+                            , figure
+                            , ColorFigure.Magenta);
+
+                        figureMenu.RunMenu();
                         break;
 
                     case 3:
                         size = Visualizer.GiveFigureSize("Выберите размер круга : ");
-                        CirclMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        figure = new Circle(start.X, start.Y, size);
+
+                        figureMenu = new SingleFigureMenu(Visualizer.MENU_SIMPLE_FIGURE
+                            , figure
+                            , ColorFigure.Green);
+
+                        figureMenu.RunMenu();
                         break;
 
                     case 4:
                         size = Visualizer.GiveFigureSize("Выберите размер квадрата : ");
-                        SquareMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        figure = new Square(start.X, start.Y, size);
+
+                        figureMenu = new SingleFigureMenu(Visualizer.MENU_SIMPLE_FIGURE
+                            , figure
+                            , ColorFigure.Blue);
+
+                        figureMenu.RunMenu();
                         break;
 
                     case 5:
                         size = Visualizer.GiveFigureSize("Выберите размер треугольника : ");
-                        TriangleMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        figure = new Triangle(start.X, start.Y, size);
+
+                        figureMenu = new SingleFigureMenu(Visualizer.MENU_FIGURE
+                            , figure
+                            , ColorFigure.DarkYellow);
+
+                        figureMenu.RunMenu();
                         break;
 
                     case 6:
                         size = Visualizer.GiveFigureSize("Выберите размер ромба : ");
-                        RombMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        figure = new Romb(start.X, start.Y, size);
+
+                        figureMenu = new SingleFigureMenu(Visualizer.MENU_SIMPLE_FIGURE
+                            , figure
+                            , ColorFigure.Cyan);
+
+                        figureMenu.RunMenu();
                         break;
 
                     case 7:
@@ -80,196 +99,6 @@ namespace _2020._09._12
                         break;
                 }
             } while (exit);
-        }
-
-        static void PolylineMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            IFigure figure = new Polyline(startX + Visualizer.DISTANCE_FOR_X, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] figurePoints = figure.GetView();
-
-                    for (int i = 0; i < figure.Length; i++)
-                    {
-                        Visualizer.ClearPoints(figurePoints[i].X, figurePoints[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, figure, ref result);
-
-                if (result)
-                {
-                    Coordinates[] figurePoints = figure.GetView();
-
-                    for (int i = 0; i < figure.Length; i++)
-                    {
-                        Visualizer.PrintPoint(figurePoints[i].X, figurePoints[i].Y, ColorFigure.Magenta);
-                    }
-                }
-            } while (result);
-        }
-
-        static void SquareMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            IFigure figure = new Square(startX, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] figurePoints = figure.GetView();
-
-                    for (int i = 0; i < figure.Length; i++)
-                    {
-                        Visualizer.ClearPoints(figurePoints[i].X, figurePoints[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, figure, ref result);
-
-                if (result)
-                {
-                    Coordinates[] figurePoints = figure.GetView();
-
-                    for (int i = 0; i < figurePoints.Length; i++)
-                    {
-                        Visualizer.PrintPoint(figurePoints[i].X, figurePoints[i].Y, ColorFigure.Blue);
-                    }
-                }
-            } while (result);
-        }
-
-        static void CirclMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            IFigure figure = new Circle(startX, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] figureCoordinates = figure.GetView();
-
-                    for (int i = 0; i < figure.Length; i++)
-                    {
-                        Visualizer.ClearPoints(figureCoordinates[i].X, figureCoordinates[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, figure, ref result);
-
-                if (result)
-                {
-                    Coordinates[] figureCoordinates = figure.GetView();
-
-                    for (int i = 0; i < figure.Length; i++)
-                    {
-                        Visualizer.PrintPoint(figureCoordinates[i].X, figureCoordinates[i].Y, ColorFigure.Green);
-                    }
-                }
-            } while (result);
-        }
-
-        static void TriangleMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            Triangle myTriangle = new Triangle(startX, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] triangle = myTriangle.GetView();
-
-                    for (int i = 0; i < myTriangle.Length; i++)
-                    {
-                        Visualizer.ClearPoints(triangle[i].X, triangle[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, myTriangle, ref result);
-
-                if (result)
-                {
-                    Coordinates[] triangl = myTriangle.GetView();
-
-                    for (int i = 0; i < myTriangle.Length; i++)
-                    {
-                        Visualizer.PrintPoint(triangl[i].X, triangl[i].Y, ColorFigure.DarkYellow);
-                    }
-                }
-            } while (result);
-        }
-
-        static void RombMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            Romb myRomb = new Romb(startX, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] romb = myRomb.GetView();
-
-                    for (int i = 0; i < myRomb.Length; i++)
-                    {
-                        Visualizer.ClearPoints(romb[i].X, romb[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, myRomb, ref result);
-
-                if (result)
-                {
-                    Coordinates[] romb = myRomb.GetView();
-
-                    for (int i = 0; i < romb.Length; i++)
-                    {
-                        Visualizer.PrintPoint(romb[i].X, romb[i].Y, ColorFigure.Cyan);
-                    }
-                }
-            } while (result);
         }
 
         static void CircInSquareMenu(int startX, int startY, int size)
