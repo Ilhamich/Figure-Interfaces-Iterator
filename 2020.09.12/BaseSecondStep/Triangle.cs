@@ -33,11 +33,11 @@ namespace _2020._09._12
 
             if (_position)
             {
-                BildVerticalTriangle(start.X, start.Y, _sizeOfTriangle);
+                BildVerticalTriangle(_start.X, _start.Y, _sizeOfTriangle);
             }
             else
             {
-                BildHorizontalTriangle(start.X, start.Y, _sizeOfTriangle);
+                BildHorizontalTriangle(_start.X, _start.Y, _sizeOfTriangle);
             }
 
             return (Coordinates[])_triangl.Clone();

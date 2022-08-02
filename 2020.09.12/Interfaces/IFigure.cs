@@ -1,6 +1,6 @@
 ﻿namespace _2020._09._12
 {
-    interface IFigure
+    public interface IFigure
     {
         void MoveByY(int unit);
 
@@ -10,19 +10,10 @@
 
         IFigure GetCopy();
 
-        int CentrX
-        {
-            get;
-        }
+        int CentrX { get; }
 
-        int CentrY
-        {
-            get;
-        }
+        int CentrY { get; }
 
-        int Length
-        {
-            get;
-        }
+        int Length { get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace _2020._09._12
 {
-    enum InputUser : short
+    public enum InputUser : short
     {
         NoDirection = 0,
         LeftArrow = 1,

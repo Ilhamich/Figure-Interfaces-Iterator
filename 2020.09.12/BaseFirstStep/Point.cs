@@ -2,14 +2,14 @@
 {
     class Point : IFigure
     {
-        protected Coordinates start;
+        protected Coordinates _start;
         private const int POINT_ELEMENTS_LENGTH = 1;
 
         public Point(int x, int y)
         {
-            start = new Coordinates();
-            start.X = x;
-            start.Y = y;
+            _start = new Coordinates();
+            _start.X = x;
+            _start.Y = y;
         }
 
         public Point(int num)
@@ -19,19 +19,19 @@
 
         public virtual void MoveByY(int unit)
         {
-            start.Y += unit;
+            _start.Y += unit;
         }
 
         public virtual void MoveByX(int unit)
         {
-            start.X += unit;
+            _start.X += unit;
         }
 
         public virtual Coordinates[] GetView()
         {
             Coordinates[] starts = new Coordinates[POINT_ELEMENTS_LENGTH];
 
-            starts[0] = start;
+            starts[0] = _start;
 
             return starts;
         }
@@ -45,12 +45,12 @@
 
         public virtual int CentrX
         {
-            get { return start.X; }
+            get { return _start.X; }
         }
 
         public virtual int CentrY
         {
-            get { return start.Y; }
+            get { return _start.Y; }
         }
 
         public virtual int Length

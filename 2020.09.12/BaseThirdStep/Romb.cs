@@ -34,18 +34,18 @@ namespace _2020._09._12
             {
                 for (int j = 0; j < sizeOfRomb && i == 0; j++)
                 {
-                    _triangl[j].X = start.X + j;
-                    _triangl[j].Y = start.Y + sizeOfRomb - 1 - j;
-                    _triangl[((i + 1) * sizeOfRomb) + j].X = start.X - j;
-                    _triangl[((i + 1) * sizeOfRomb) + j].Y = start.Y + sizeOfRomb - 1 - j;
+                    _triangl[j].X = _start.X + j;
+                    _triangl[j].Y = _start.Y + sizeOfRomb - 1 - j;
+                    _triangl[((i + 1) * sizeOfRomb) + j].X = _start.X - j;
+                    _triangl[((i + 1) * sizeOfRomb) + j].Y = _start.Y + sizeOfRomb - 1 - j;
                 }
 
                 for (int j = 0; j < sizeOfRomb && i == QUANTITY_OF_PART_TRIANGLE - i; j++)
                 {
                     _triangl[(i * sizeOfRomb) + j].X = _triangl[j].X;
-                    _triangl[(i * sizeOfRomb) + j].Y = start.Y - sizeOfRomb + j + 1;
+                    _triangl[(i * sizeOfRomb) + j].Y = _start.Y - sizeOfRomb + j + 1;
                     _triangl[((i + 1) * sizeOfRomb) + j].X = _triangl[sizeOfRomb + j].X;
-                    _triangl[((i + 1) * sizeOfRomb) + j].Y = start.Y - sizeOfRomb + j + 1;
+                    _triangl[((i + 1) * sizeOfRomb) + j].Y = _start.Y - sizeOfRomb + j + 1;
                 }
             }
         }

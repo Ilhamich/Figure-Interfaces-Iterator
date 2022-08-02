@@ -22,15 +22,15 @@ namespace _2020._09._12
 
             _halfOfWidht = halfOfWidht;
             _width = _halfOfWidht + 1 + _halfOfWidht;
-            _rightDownAngle.X = start.X + _width - 1;
-            _rightDownAngle.Y = start.Y + _width - 1;
+            _rightDownAngle.X = _start.X + _width - 1;
+            _rightDownAngle.Y = _start.Y + _width - 1;
         }
 
         public override int CentrX
         {
             get
             {
-                return start.X + _halfOfWidht;
+                return _start.X + _halfOfWidht;
             }
         }
 
@@ -38,7 +38,7 @@ namespace _2020._09._12
         {
             get
             {
-                return start.Y + _halfOfWidht;
+                return _start.Y + _halfOfWidht;
             }
         }
 
@@ -69,12 +69,12 @@ namespace _2020._09._12
                     {
                         if ((i + 1) % PARALLEL_LINE != 0)
                         {
-                            _square[j + (i * _width)].X = start.X + j;
-                            _square[j + (i * _width)].Y = start.Y;
+                            _square[j + (i * _width)].X = _start.X + j;
+                            _square[j + (i * _width)].Y = _start.Y;
                         }
                         else
                         {
-                            _square[j + (i * _width)].Y = start.Y + j;
+                            _square[j + (i * _width)].Y = _start.Y + j;
                             _square[j + (i * _width)].X = _rightDownAngle.X;
                         }
                     }
@@ -87,7 +87,7 @@ namespace _2020._09._12
                         }
                         else
                         {
-                            _square[j + (i * _width)].X = start.X;
+                            _square[j + (i * _width)].X = _start.X;
                             _square[j + (i * _width)].Y = _rightDownAngle.Y - j;
                         }
                     }
@@ -111,31 +111,31 @@ namespace _2020._09._12
             {
                 _halfOfWidht += unit;
                 _width += unit + unit;
-                start.X -= unit;
-                start.Y -= unit;
+                _start.X -= unit;
+                _start.Y -= unit;
 
                 if (unit > 0)
                 {
-                    _rightDownAngle.X = start.X + _width - unit;
-                    _rightDownAngle.Y = start.Y + _width - unit;
+                    _rightDownAngle.X = _start.X + _width - unit;
+                    _rightDownAngle.Y = _start.Y + _width - unit;
                 }
                 else
                 {
-                    _rightDownAngle.X = start.X + _width + unit;
-                    _rightDownAngle.Y = start.Y + _width + unit;
+                    _rightDownAngle.X = _start.X + _width + unit;
+                    _rightDownAngle.Y = _start.Y + _width + unit;
                 }
             }           
         }
 
         public override void MoveByY(int unit)
         {
-            start.Y += unit;
+            _start.Y += unit;
             _rightDownAngle.Y += unit;
         }
 
         public override void MoveByX(int unit)
         {
-            start.X += unit;
+            _start.X += unit;
             _rightDownAngle.X += unit; 
         }
 

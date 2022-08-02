@@ -11,7 +11,7 @@
             {
                 size = MINIMAL_SIZE;
             }
-            _circleOut = new Circle(start.X, start.Y, size);
+            _circleOut = new Circle(_start.X, _start.Y, size);
         }
 
         public override int Length

@@ -2,7 +2,7 @@
 {
     class BL
     {
-        public static void ChangeFigure(InputUser chois, ref bool result, IFigure chosenFigure)
+        public static void ChangeFigure(InputUser chois, IFigure chosenFigure, ref bool result)
         {
             switch (chois)
             {

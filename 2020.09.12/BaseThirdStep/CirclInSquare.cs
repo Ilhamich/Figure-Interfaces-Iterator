@@ -13,7 +13,7 @@
                 radius = 1;
             }
 
-            _inSquare = new Square(start.X, start.Y, radius);
+            _inSquare = new Square(_start.X, _start.Y, radius);
         }
 
         public override int Length

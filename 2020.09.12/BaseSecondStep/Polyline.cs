@@ -32,11 +32,11 @@
 
             if (!_turne)
             {
-                BildHorizontalPolyline(start.X, start.Y);
+                BildHorizontalPolyline(_start.X, _start.Y);
             }
             else
             {
-                BildVerticalPolyline(start.X, start.Y);
+                BildVerticalPolyline(_start.X, _start.Y);
             }
 
             return _polyline;

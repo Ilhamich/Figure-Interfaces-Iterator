@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using _2020._09._12.FigureMenus;
 using System.Threading;
 
 namespace _2020._09._12
@@ -8,19 +7,23 @@ namespace _2020._09._12
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.Unicode;
-
             bool exit = true;
 
             do
             {
                 int chois = Visualizer.ChoisOfFigure();
                 int size = 0;
+                FigureMenu figureMenu;
 
                 switch (chois)
                 {
                     case 1:
-                        PointMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION);
+                        figureMenu = new PointMenu(Visualizer.START_X_POSITION
+                            , Visualizer.START_Y_POSITION
+                            , Visualizer.MENU_POINT);
+
+                        figureMenu.RunMenu();
+                        //PointMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION);
                         break;
 
                     case 2:
@@ -74,7 +77,7 @@ namespace _2020._09._12
         {
             InputUser chois = 0;
             bool result = true;
-            Point myPoint = new Point(startX, startY);
+            IFigure myPoint = new Point(startX, startY);
 
             do
             {
@@ -86,7 +89,7 @@ namespace _2020._09._12
 
                 Visualizer.ClearPoints(myPoint.CentrX, myPoint.CentrY);
 
-                BL.ChangeFigure(chois, ref result, myPoint);
+                BL.ChangeFigure(chois, myPoint, ref result);
 
                 if (result)
                 {
@@ -119,7 +122,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, myPolyline);
+                BL.ChangeFigure(chois, myPolyline, ref result);
 
                 if (result)
                 {
@@ -157,7 +160,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, mySquare);
+                BL.ChangeFigure(chois, mySquare, ref result);
 
                 if (result)
                 {
@@ -195,7 +198,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, myCircle);
+                BL.ChangeFigure(chois, myCircle, ref result);
 
                 if (result)
                 {
@@ -233,7 +236,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, myTriangle);
+                BL.ChangeFigure(chois, myTriangle, ref result);
 
                 if (result)
                 {
@@ -271,7 +274,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, myRomb);
+                BL.ChangeFigure(chois, myRomb, ref result);
 
                 if (result)
                 {
@@ -309,7 +312,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, figureCIS);
+                BL.ChangeFigure(chois, figureCIS, ref result);
 
                 if (result)
                 {
@@ -354,7 +357,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, figureRC);
+                BL.ChangeFigure(chois, figureRC, ref result);
 
                 if (result)
                 {
@@ -378,31 +381,13 @@ namespace _2020._09._12
         static void PictureMenu(int startX, int startY, int size)
         {
             IFigure circl = new Circle(startX, startY, size);
-            IFigure square = new Square(circl.CentrX + Visualizer.DISTANCE_FOR_X,
-                    circl.CentrY, size);
-            IFigure triangle = new Triangle(square.CentrX + Visualizer.DISTANCE_FOR_X,
-                    square.CentrY, size);
-            IFigure romb = new Romb(triangle.CentrX + Visualizer.DISTANCE_FOR_X,
-                   triangle.CentrY, size);
-            IFigure cirqlInSquare = new CirclInSquare(square.CentrX,
-                    square.CentrY + Visualizer.DISTANCE_FOR_Y, size);
-            IFigure rombInCircle = new RombInCircl(triangle.CentrX,
-                    triangle.CentrY + Visualizer.DISTANCE_FOR_Y, size);
+            IFigure square = new Square(circl.CentrX + Visualizer.DISTANCE_FOR_X, circl.CentrY, size);
+            IFigure triangle = new Triangle(square.CentrX + Visualizer.DISTANCE_FOR_X, square.CentrY, size);
+            IFigure romb = new Romb(triangle.CentrX + Visualizer.DISTANCE_FOR_X, triangle.CentrY, size);
+            IFigure cirqlInSquare = new CirclInSquare(square.CentrX, square.CentrY + Visualizer.DISTANCE_FOR_Y, size);
+            IFigure rombInCircle = new RombInCircl(triangle.CentrX, triangle.CentrY + Visualizer.DISTANCE_FOR_Y, size);
 
-            Picture allFigure = new Picture(circl, square, triangle, romb,
-                    cirqlInSquare, rombInCircle);
-
-            //if (allFigure is IFigure f)
-            //{
-            //    f.MoveByY(1);
-            //}
-
-            //foreach (IFigure item in allFigure)
-            //{
-            //    Coordinates[] allFigr = item.GetView();
-            //}
-
-            //((IEnumerable)allFigure).GetEnumerator();
+            Picture allFigure = new Picture(circl, square, triangle, romb, cirqlInSquare, rombInCircle);
 
             int figure = 0;
             FigureImput chois = 0;
@@ -445,7 +430,7 @@ namespace _2020._09._12
                     figure = Controller.SetFigure();
                     Visualizer.ChoisFigureOnPicture(ref figure);
                 } while (figure < FigureImput.Circle);
-      
+
                 Thread.Sleep(40);
 
                 if (figure != FigureImput.Enter && figure != FigureImput.Escape)
@@ -506,7 +491,7 @@ namespace _2020._09._12
                     }
                 }
 
-                BL.ChangeFigure(chois, ref result, chosenFigure);
+                BL.ChangeFigure(chois, chosenFigure, ref result);
 
                 allFigure[figure] = chosenFigure;
 

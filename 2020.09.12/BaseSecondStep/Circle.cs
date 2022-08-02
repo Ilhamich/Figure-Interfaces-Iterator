@@ -42,14 +42,14 @@ namespace _2020._09._12
         {
             for (int i = 0; i < quntity; i++)
             {
-                _circl[i].Y = start.Y - _radius + i;
-                _circl[i + quntity].Y = _radius + start.Y - i;
+                _circl[i].Y = _start.Y - _radius + i;
+                _circl[i + quntity].Y = _radius + _start.Y - i;
 
-                double tmp = Math.Sqrt((_radius * _radius) - (_circl[i].Y - start.Y)
-                        * (_circl[i].Y - start.Y)) + start.X;
+                double tmp = Math.Sqrt((_radius * _radius) - (_circl[i].Y - _start.Y)
+                        * (_circl[i].Y - _start.Y)) + _start.X;
 
                 _circl[i].X = (int)Math.Round(tmp);
-                _circl[i + quntity].X = start.X - (_circl[i].X - start.X);
+                _circl[i + quntity].X = _start.X - (_circl[i].X - _start.X);
             }
         }
 
@@ -97,12 +97,12 @@ namespace _2020._09._12
 
         public override int CentrX
         {
-            get { return start.X; }
+            get { return _start.X; }
         }
 
         public override int CentrY
         {
-            get { return start.Y; }
+            get { return _start.Y; }
         }
     }
 }
