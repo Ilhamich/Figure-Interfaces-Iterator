@@ -1,6 +1,8 @@
-﻿namespace _2020._09._12
+﻿using _2020._09._12.Interfaces;
+
+namespace _2020._09._12
 {
-    class RombInCircl : Romb
+    class RombInCircl : Romb, IMultiFigure
     {
         private Circle _circleOut;
 
@@ -29,7 +31,7 @@
             }
         }
 
-        public int LengthCircle
+        public int ExternalFigureLength
         {
             get
             {

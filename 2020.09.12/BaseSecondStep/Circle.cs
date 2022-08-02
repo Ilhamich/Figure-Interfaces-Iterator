@@ -2,7 +2,7 @@
 
 namespace _2020._09._12
 {
-    class Circle : Point, IGeometrical, IFigureSizer
+    public class Circle : Point, IGeometrical, IFigureSizer
     {
         private const int HALFS_OF_CIRCLE = 2;
         protected Coordinates[] _circl;

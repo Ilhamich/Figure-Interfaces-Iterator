@@ -1,4 +1,5 @@
 ﻿using _2020._09._12.FigureMenus;
+using _2020._09._12.Interfaces;
 using System.Threading;
 
 namespace _2020._09._12
@@ -16,6 +17,10 @@ namespace _2020._09._12
                 FigureMenu figureMenu;
                 Coordinates start = new Coordinates(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION); ;
                 IFigure figure;
+
+                IMultiFigure multiFigure;
+                MultiFigureMenu multiFigureMenu;
+                ColorFigure[] colors;
 
                 switch (chois)
                 {
@@ -81,12 +86,28 @@ namespace _2020._09._12
 
                     case 7:
                         size = Visualizer.GiveFigureSize("Выберите размер круга в квадрате : ");
-                        CircInSquareMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        multiFigure = new CirclInSquare(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+
+                        colors = new ColorFigure[] { ColorFigure.Green, ColorFigure.Blue };
+
+                        multiFigureMenu = new MultiFigureMenu(Visualizer.MENU_SIMPLE_FIGURE
+                            , multiFigure
+                            , colors);
+
+                        multiFigureMenu.RunMenu();
                         break;
 
                     case 8:
                         size = Visualizer.GiveFigureSize("Выберите размер ромба в круге : ");
-                        RombInCircleMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        multiFigure = new RombInCircl(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+
+                        colors = new ColorFigure[] {ColorFigure.Cyan, ColorFigure.Green};
+
+                        multiFigureMenu = new MultiFigureMenu(Visualizer.MENU_SIMPLE_FIGURE
+                            , multiFigure
+                            , colors);
+
+                        multiFigureMenu.RunMenu();
                         break;
 
                     case 9:
@@ -99,96 +120,6 @@ namespace _2020._09._12
                         break;
                 }
             } while (exit);
-        }
-
-        static void CircInSquareMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            CirclInSquare figureCIS = new CirclInSquare(startX, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] circleinSquare = figureCIS.GetView();
-
-                    for (int i = 0; i < figureCIS.Length; i++)
-                    {
-                        Visualizer.ClearPoints(circleinSquare[i].X, circleinSquare[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, figureCIS, ref result);
-
-                if (result)
-                {
-                    Coordinates[] circleinSquare = figureCIS.GetView();
-
-                    for (int i = 0; i < circleinSquare.Length; i++)
-                    {
-                        if (i < figureCIS.LengthSquare)
-                        {
-                            Visualizer.PrintPoint(circleinSquare[i].X, circleinSquare[i].Y, ColorFigure.Blue);
-                        }
-                        else
-                        {
-                            Visualizer.PrintPoint(circleinSquare[i].X, circleinSquare[i].Y, ColorFigure.Green);
-                        }
-                    }
-                }
-            } while (result);
-        }
-
-        static void RombInCircleMenu(int startX, int startY, int size)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            RombInCircl figureRC = new RombInCircl(startX, startY, size);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_SIMPLE_FIGURE;
-
-                SetAction(menu, ref chois);
-
-                if (chois != InputUser.Escape)
-                {
-                    Coordinates[] rombInCircl = figureRC.GetView();
-
-                    for (int i = 0; i < figureRC.Length; i++)
-                    {
-                        Visualizer.ClearPoints(rombInCircl[i].X, rombInCircl[i].Y);
-                    }
-                }
-
-                BL.ChangeFigure(chois, figureRC, ref result);
-
-                if (result)
-                {
-                    Coordinates[] rombInCircle = figureRC.GetView();
-
-                    for (int i = 0; i < rombInCircle.Length; i++)
-                    {
-                        if (i < figureRC.LengthCircle)
-                        {
-                            Visualizer.PrintPoint(rombInCircle[i].X, rombInCircle[i].Y, ColorFigure.Green);
-                        }
-                        else
-                        {
-                            Visualizer.PrintPoint(rombInCircle[i].X, rombInCircle[i].Y, ColorFigure.Cyan);
-                        }
-                    }
-                }
-            } while (result);
         }
 
         static void PictureMenu(int startX, int startY, int size)

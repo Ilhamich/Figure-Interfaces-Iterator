@@ -1,9 +1,11 @@
-﻿namespace _2020._09._12
+﻿using _2020._09._12.Interfaces;
+
+namespace _2020._09._12
 {
-    class CirclInSquare : Circle
+    public class CirclInSquare : Circle , IMultiFigure
     {
         public const int QUANTITY_OF_SIDES = 4;
-        private Square _inSquare;
+        private Square _externalSquare;
 
         public CirclInSquare(int x, int y, int radius)
             : base(x, y, radius)
@@ -13,7 +15,7 @@
                 radius = 1;
             }
 
-            _inSquare = new Square(_start.X, _start.Y, radius);
+            _externalSquare = new Square(_start.X, _start.Y, radius);
         }
 
         public override int Length
@@ -22,56 +24,56 @@
             {
                 int lenght = 0;
 
-                if (_circl != null && _inSquare.Length != 0)
+                if (_circl != null && _externalSquare.Length != 0)
                 {
-                    lenght = _circl.Length + _inSquare.Length;
+                    lenght = _circl.Length + _externalSquare.Length;
                 }
 
                 return lenght;
             }
         }
 
-        public int LengthSquare
+        public int ExternalFigureLength
         {
-            get { return _inSquare.Length; }
+            get { return _externalSquare.Length; }
         }
 
         public override void MoveByX(int unit)
         {
             base.MoveByX(unit);
-            _inSquare.MoveByX(unit);
+            _externalSquare.MoveByX(unit);
         }
 
         public override void MoveByY(int unit)
         {
             base.MoveByY(unit);
-            _inSquare.MoveByY(unit);
+            _externalSquare.MoveByY(unit);
         }
 
         public override void ChangeSize(int unit)
         {
             base.ChangeSize(unit);
-            _inSquare.ChangeSize(unit);
+            _externalSquare.ChangeSize(unit);
         }
 
         public override Coordinates[] GetView()
         {
             Coordinates[] circle = base.GetView();
-            Coordinates[] square = _inSquare.GetView();
+            Coordinates[] square = _externalSquare.GetView();
 
-            Coordinates[] circleInSquare = new Coordinates[circle.Length + _inSquare.Length];
+            Coordinates[] circleInSquare = new Coordinates[circle.Length + _externalSquare.Length];
 
             for (int i = 0; i < circleInSquare.Length; i++)
             {
-                if (i < _inSquare.Length)
+                if (i < _externalSquare.Length)
                 {
                     circleInSquare[i].X = square[i].X;
                     circleInSquare[i].Y = square[i].Y;
                 }
                 else
                 {
-                    circleInSquare[i].X = circle[i - _inSquare.Length].X;
-                    circleInSquare[i].Y = circle[i - _inSquare.Length].Y;
+                    circleInSquare[i].X = circle[i - _externalSquare.Length].X;
+                    circleInSquare[i].Y = circle[i - _externalSquare.Length].Y;
                 }
             }
 
@@ -82,7 +84,7 @@
         {
             CirclInSquare copy = (CirclInSquare)MemberwiseClone();
             copy._circl = (Coordinates[])_circl.Clone();
-            copy._inSquare = (Square)_inSquare.GetCopy();
+            copy._externalSquare = (Square)_externalSquare.GetCopy();
 
             return copy;
         }

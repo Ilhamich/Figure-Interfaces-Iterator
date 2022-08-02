@@ -1,6 +1,6 @@
 ﻿namespace _2020._09._12
 {
-    class Point : IFigure
+    public class Point : IFigure
     {
         protected Coordinates _start;
         private const int POINT_ELEMENTS_LENGTH = 1;
