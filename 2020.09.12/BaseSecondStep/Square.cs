@@ -13,7 +13,7 @@ namespace _2020._09._12
         private Coordinates[] _square;
 
         public Square(int x, int y, int halfOfWidht)
-            : base(x - halfOfWidht, y - halfOfWidht)
+            : base(new Coordinates(x - halfOfWidht, y - halfOfWidht))
         {
             if (halfOfWidht < 1)
             {

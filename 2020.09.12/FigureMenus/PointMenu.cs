@@ -1,13 +1,11 @@
-﻿using System.Threading;
-
-namespace _2020._09._12.FigureMenus
+﻿namespace _2020._09._12.FigureMenus
 {
     internal class PointMenu : FigureMenu
     {
-        public PointMenu(int startX, int startY, string[] listMenu)
-            :base(listMenu)
+        public PointMenu(Coordinates start, string[] listMenu)
+            : base(listMenu)
         {
-            _figure = new Point(startX, startY);
+            _figure = new Point(start);
         }
 
         public override void RunMenu()
@@ -22,7 +20,7 @@ namespace _2020._09._12.FigureMenus
 
                 if (_result)
                     Visualizer.PrintPoint(_figure.CentrX, _figure.CentrY, ColorFigure.Red);
-                
+
             } while (_result);
         }
     }

@@ -5,15 +5,13 @@
         protected Coordinates _start;
         private const int POINT_ELEMENTS_LENGTH = 1;
 
-        public Point(int x, int y)
+        public Point(Coordinates start)
         {
-            _start = new Coordinates();
-            _start.X = x;
-            _start.Y = y;
+            _start = start;
         }
 
         public Point(int num)
-            : this(num, num)
+            : this(new Coordinates(num, num))
         {
         }
 

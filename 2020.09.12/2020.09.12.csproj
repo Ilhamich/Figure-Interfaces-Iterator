@@ -51,6 +51,7 @@
     <Compile Include="BL.cs" />
     <Compile Include="FigureMenus\FigureMenu.cs" />
     <Compile Include="FigureMenus\PointMenu.cs" />
+    <Compile Include="FigureMenus\SingleFigureMenu.cs" />
     <Compile Include="UI\Controller.cs" />
     <Compile Include="EnumsAndStructs\Coordinates.cs" />
     <Compile Include="EnumsAndStructs\FigureImput.cs" />

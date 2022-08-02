@@ -12,8 +12,8 @@
             get { return _length; }
         }
 
-        public Polyline(int xF, int yF, int length)
-           : base(xF, yF)
+        public Polyline(int x, int y, int length)
+           : base(new Coordinates(x, y))
         {
             _length = length;
         }

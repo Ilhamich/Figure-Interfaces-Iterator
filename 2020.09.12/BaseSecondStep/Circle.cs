@@ -10,7 +10,7 @@ namespace _2020._09._12
         protected int _quntityOfHalf;
 
         public Circle(int x, int y, int size)
-            : base(x, y)
+            : base(new Coordinates(x, y))
         {
             if (size < 1)
             {

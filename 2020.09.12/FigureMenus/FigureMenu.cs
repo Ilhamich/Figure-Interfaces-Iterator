@@ -24,16 +24,16 @@ namespace _2020._09._12.FigureMenus
         public virtual void RunMenu()
         {
             Thread.Sleep(40);
-            SetAction(_listMenu, ref _chois);
+            SetAction();
         }
 
-        protected void SetAction(string[] menu, ref InputUser chois)
+        protected void SetAction()
         {
             do
             {
-                Visualizer.ChooseActionForFigure(menu, chois);
-                chois = Controller.SetKurse();
-            } while (chois < InputUser.LeftArrow || chois > (InputUser)menu.Length);
+                Visualizer.ChooseActionForFigure(_listMenu, _chois);
+                _chois = Controller.SetKurse();
+            } while (_chois < InputUser.LeftArrow || _chois > (InputUser)_listMenu.Length);
         }
     }
 }

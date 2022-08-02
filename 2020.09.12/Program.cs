@@ -14,21 +14,30 @@ namespace _2020._09._12
                 int chois = Visualizer.ChoisOfFigure();
                 int size = 0;
                 FigureMenu figureMenu;
+                Coordinates start;
+                IFigure figure;
 
                 switch (chois)
                 {
                     case 1:
-                        figureMenu = new PointMenu(Visualizer.START_X_POSITION
-                            , Visualizer.START_Y_POSITION
-                            , Visualizer.MENU_POINT);
+                        start = new Coordinates(Visualizer.START_X_POSITION
+                            , Visualizer.START_Y_POSITION);
+
+                        figureMenu = new PointMenu(start, Visualizer.MENU_POINT);
 
                         figureMenu.RunMenu();
-                        //PointMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION);
                         break;
 
                     case 2:
                         size = Visualizer.GiveFigureSize("Выберите размер ломаной линии : ");
-                        PolylineMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
+                        start = new Coordinates(Visualizer.START_X_POSITION
+                            , Visualizer.START_Y_POSITION);
+
+                        figure = new Polyline(start.X + Visualizer.DISTANCE_FOR_X, start.Y, size);
+                        SingleFigureMenu singlePolyMenu = new SingleFigureMenu(Visualizer.MENU_FIGURE, figure);
+
+                        singlePolyMenu.RunMenu();
+                        // PolylineMenu(Visualizer.START_X_POSITION, Visualizer.START_Y_POSITION, size);
                         break;
 
                     case 3:
@@ -73,36 +82,11 @@ namespace _2020._09._12
             } while (exit);
         }
 
-        static void PointMenu(int startX, int startY)
-        {
-            InputUser chois = 0;
-            bool result = true;
-            IFigure myPoint = new Point(startX, startY);
-
-            do
-            {
-                Thread.Sleep(40);
-
-                string[] menu = Visualizer.MENU_POINT;
-
-                SetAction(menu, ref chois);
-
-                Visualizer.ClearPoints(myPoint.CentrX, myPoint.CentrY);
-
-                BL.ChangeFigure(chois, myPoint, ref result);
-
-                if (result)
-                {
-                    Visualizer.PrintPoint(myPoint.CentrX, myPoint.CentrY, ColorFigure.Red);
-                }
-            } while (result);
-        }
-
         static void PolylineMenu(int startX, int startY, int size)
         {
             InputUser chois = 0;
             bool result = true;
-            Polyline myPolyline = new Polyline(startX + Visualizer.DISTANCE_FOR_X, startY, size);
+            IFigure figure = new Polyline(startX + Visualizer.DISTANCE_FOR_X, startY, size);
 
             do
             {
@@ -114,23 +98,23 @@ namespace _2020._09._12
 
                 if (chois != InputUser.Escape)
                 {
-                    Coordinates[] polyline = myPolyline.GetView();
+                    Coordinates[] figurePoints = figure.GetView();
 
-                    for (int i = 0; i < myPolyline.Length; i++)
+                    for (int i = 0; i < figure.Length; i++)
                     {
-                        Visualizer.ClearPoints(polyline[i].X, polyline[i].Y);
+                        Visualizer.ClearPoints(figurePoints[i].X, figurePoints[i].Y);
                     }
                 }
 
-                BL.ChangeFigure(chois, myPolyline, ref result);
+                BL.ChangeFigure(chois, figure, ref result);
 
                 if (result)
                 {
-                    Coordinates[] polyline = myPolyline.GetView();
+                    Coordinates[] figurePoints = figure.GetView();
 
-                    for (int i = 0; i < myPolyline.Length; i++)
+                    for (int i = 0; i < figure.Length; i++)
                     {
-                        Visualizer.PrintPoint(polyline[i].X, polyline[i].Y, ColorFigure.Magenta);
+                        Visualizer.PrintPoint(figurePoints[i].X, figurePoints[i].Y, ColorFigure.Magenta);
                     }
                 }
             } while (result);
@@ -140,7 +124,7 @@ namespace _2020._09._12
         {
             InputUser chois = 0;
             bool result = true;
-            Square mySquare = new Square(startX, startY, size);
+            IFigure figure = new Square(startX, startY, size);
 
             do
             {
@@ -152,23 +136,23 @@ namespace _2020._09._12
 
                 if (chois != InputUser.Escape)
                 {
-                    Coordinates[] square = mySquare.GetView();
+                    Coordinates[] figurePoints = figure.GetView();
 
-                    for (int i = 0; i < mySquare.Length; i++)
+                    for (int i = 0; i < figure.Length; i++)
                     {
-                        Visualizer.ClearPoints(square[i].X, square[i].Y);
+                        Visualizer.ClearPoints(figurePoints[i].X, figurePoints[i].Y);
                     }
                 }
 
-                BL.ChangeFigure(chois, mySquare, ref result);
+                BL.ChangeFigure(chois, figure, ref result);
 
                 if (result)
                 {
-                    Coordinates[] forSquare = mySquare.GetView();
+                    Coordinates[] figurePoints = figure.GetView();
 
-                    for (int i = 0; i < forSquare.Length; i++)
+                    for (int i = 0; i < figurePoints.Length; i++)
                     {
-                        Visualizer.PrintPoint(forSquare[i].X, forSquare[i].Y, ColorFigure.Blue);
+                        Visualizer.PrintPoint(figurePoints[i].X, figurePoints[i].Y, ColorFigure.Blue);
                     }
                 }
             } while (result);
@@ -178,7 +162,7 @@ namespace _2020._09._12
         {
             InputUser chois = 0;
             bool result = true;
-            Circle myCircle = new Circle(startX, startY, size);
+            IFigure figure = new Circle(startX, startY, size);
 
             do
             {
@@ -190,23 +174,23 @@ namespace _2020._09._12
 
                 if (chois != InputUser.Escape)
                 {
-                    Coordinates[] circle = myCircle.GetView();
+                    Coordinates[] figureCoordinates = figure.GetView();
 
-                    for (int i = 0; i < myCircle.Length; i++)
+                    for (int i = 0; i < figure.Length; i++)
                     {
-                        Visualizer.ClearPoints(circle[i].X, circle[i].Y);
+                        Visualizer.ClearPoints(figureCoordinates[i].X, figureCoordinates[i].Y);
                     }
                 }
 
-                BL.ChangeFigure(chois, myCircle, ref result);
+                BL.ChangeFigure(chois, figure, ref result);
 
                 if (result)
                 {
-                    Coordinates[] circle = myCircle.GetView();
+                    Coordinates[] figureCoordinates = figure.GetView();
 
-                    for (int i = 0; i < myCircle.Length; i++)
+                    for (int i = 0; i < figure.Length; i++)
                     {
-                        Visualizer.PrintPoint(circle[i].X, circle[i].Y, ColorFigure.Green);
+                        Visualizer.PrintPoint(figureCoordinates[i].X, figureCoordinates[i].Y, ColorFigure.Green);
                     }
                 }
             } while (result);

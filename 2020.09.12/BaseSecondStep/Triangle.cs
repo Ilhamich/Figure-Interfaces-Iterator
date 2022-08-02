@@ -17,7 +17,7 @@ namespace _2020._09._12
         }
 
         public Triangle(int x, int y, int size)
-            : base(x, y)
+            : base(new Coordinates(x, y))
         {
             if (size < MINIMAL_SIZE)
             {
